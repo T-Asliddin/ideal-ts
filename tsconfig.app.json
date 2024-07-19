@@ -10,10 +10,15 @@
     "paths": {
       "@/*": ["./*"],
       "@pages": ["./src/page"],
-      "service": ["/src/service/index.ts"],
-      "@routes": ["/src/router/routes.tsx"],
-      "@notification": ["/src/utils/notification.ts"],
-      "@validation": ["/src/utils/validation.ts"]
+      "@service": ["./src/service"],
+      "@routes": ["./src/router/routes.tsx"],
+      "@notification": ["./src/utils/notification.ts"],
+      "@validation": ["./src/utils/validation.ts"],
+      "@data-service": ["./src/utils/data-service.ts"],
+      "@auth-interfaces": ["./src/interfaces/auth.ts"],
+      "@ui": ["./src/components/index.ts"]
+
+
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

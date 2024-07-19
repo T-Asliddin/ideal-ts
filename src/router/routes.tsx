@@ -1,10 +1,17 @@
-// import WidgetsIcon from '@mui/icons-material/Widgets';
-// import InboxIcon from '@mui/icons-material/MoveToInbox';
+import WidgetsIcon from '@mui/icons-material/Widgets';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import DryCleaningIcon from '@mui/icons-material/DryCleaning';
 
-// const routes= [
-//     { path :" ", content :"Asosiy" , icon :<WidgetsIcon/>},
-//     { path:"orders", content :"Orders" , icon :<InboxIcon/>},
-//     { path:"servise", content :"Servise" , icon :<InboxIcon/>}
-// ]
+interface Route {
+    path: string,
+    content: string,
+    icon:React.ReactElement
+}
 
-// export default routes
+const routes: Route[]= [
+    { path :"/drawer", content :"Asosiy" , icon :<WidgetsIcon/>},
+    { path:"/drawer/order", content :"Orders" , icon :<InboxIcon/>},
+    { path:"/drawer/servise", content :"Servise" , icon :<DryCleaningIcon/>}
+]
+
+export default routes
