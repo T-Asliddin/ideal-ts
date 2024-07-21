@@ -6,10 +6,9 @@ import { useState, useEffect } from "react";
 import { Button, MenuItem, Select } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { order, service } from "@service";
-import { useMask } from "@react-input/mask";
 import { OrderCreateValidationSChame } from "@validation";
 import { ModalProps } from "@global-interfaces";
-import { Create } from "@order-interfaces";
+import {  Update } from "@order-interfaces";
 
 const style = {
   position: "absolute",
@@ -23,19 +22,29 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({ open, handleClose }: ModalProps) {
+export default function BasicModal({ open, handleClose, item }: ModalProps) {
   const [data, setData] = useState([]);
-  const initialValues: Create = {
-    amount: "",
-    client_full_name: "",
-    client_phone_number: "",
-    service_id: "",
+  const [orders, setOrders] = useState([]);  
+  const initialValues: Update = {
+    amount: item ? item.amount : "",
+    client_id: item ? item.client_name : "",
+    status: item ? item.status : "",
+    service_id: item ? item.service_name : "",
+  };
+  const getorder = async () => {
+    try {
+      const response = await order.get({ page: 1, limit: 100 });
+      if (response.status === 200 && response.data.orders_list) {
+        setOrders(response.data.orders_list);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const inputRef = useMask({
-    mask: "+998 (__) ___-__-__",
-    replacement: { _: /\d/ },
-  });
+  useEffect(() => {
+    getorder();
+  }, []);
 
   const getdata = async () => {
     try {
@@ -51,13 +60,13 @@ export default function BasicModal({ open, handleClose }: ModalProps) {
   useEffect(() => {
     getdata();
   }, []);
+console.log(initialValues);
 
-  const handleSubmit = async (value: Create) => {
+  const handleSubmit = async (value: Update) => {   
     try {
-      const phone = value.client_phone_number.replace(/\D/g, "");
-      const payload = { ...value, client_phone_number: `+${phone}` };
-      const response = await order.create(payload);
-      if (response.status === 201) {
+      const payload = { ...value,id:item.id  };
+      const response = await order.update(payload);
+      if (response.status === 200) {
         handleClose();
         window.location.reload();
       }
@@ -80,48 +89,56 @@ export default function BasicModal({ open, handleClose }: ModalProps) {
           component="h2"
           className="text-center"
         >
-          Create Order
+          Update Order
         </Typography>
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
-          validationSchema={OrderCreateValidationSChame}
+          // validationSchema={}
         >
           {({ isSubmitting, setFieldValue, values }) => (
             <Form>
               <Field
-                name="client_full_name"
-                type="text"
-                as={TextField}
-                label="Name"
+                name="client_id"
+                as={Select}
+                label="Client Name"
                 fullWidth
                 variant="outlined"
                 margin="normal"
-                helperText={
-                  <ErrorMessage
-                    name="client_full_name"
-                    component="p"
-                    className="text-[red] text-[15px]"
-                  />
+                value={values.client_id || ""}
+                onChange={(e: any) =>
+                  setFieldValue("client_id", e.target.value)
                 }
+              >
+                {orders.map((i: any) => (
+                  <MenuItem key={i.client_id} value={i.client_id}>
+                    {i.client_name}
+                  </MenuItem>
+                ))}
+              </Field>
+              <ErrorMessage
+                name="service_id"
+                component="p"
+                className="text-[red] text-[15px]"
               />
               <Field
-                name="client_phone_number"
-                type="text"
-                as={TextField}
-                label="Phone"
+                name="status"
+                as={Select}
+                label="Status"
                 fullWidth
-                inputRef={inputRef}
                 variant="outlined"
                 margin="normal"
-                helperText={
-                  <ErrorMessage
-                    name="client_phone_number"
-                    component="p"
-                    className="text-[red] text-[15px]"
-                  />
-                }
+              >
+                <MenuItem value="in_process">In process</MenuItem>
+                <MenuItem value="done">Done</MenuItem>
+                <MenuItem value="takne">Takne</MenuItem>
+              </Field>
+              <ErrorMessage
+                name="status"
+                component="p"
+                className="text-[red] text-[15px]"
               />
+
               <Field
                 name="amount"
                 type="number"

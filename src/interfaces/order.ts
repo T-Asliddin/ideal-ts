@@ -13,10 +13,20 @@ export interface Delete {
     service_id:string
   }
 
+  export interface Update{
+    amount:string |number;
+    client_id:string;
+    status:string;
+    service_id:string
+    id?:string
+  }
+
+
 export interface Request {
   get: (data: Params) => any;
   delete: (data: Delete) => any;
   create:(data:Create)=>any
+  update:(data:Update)=>any
 
   
 }

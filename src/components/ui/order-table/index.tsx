@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import { useState } from "react";
 import { order } from "@service";
 import { Delete } from "@order-interfaces";
-//  import { ServiceModal } from "@modal";
+ import { OrderModal ,EditOrderModal} from "@modal";
 import { Data } from "@global-interfaces";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -48,7 +48,8 @@ export default function CustomizedTables({ data }: Data) {
 
   return (
     <>
-      {/* <ServiceModal open={open} handleClose={() => setOpen(false)}  item={item}/> */}
+    
+      <EditOrderModal open={open} handleClose={() => setOpen(false)}  item={item}/>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
@@ -84,9 +85,9 @@ export default function CustomizedTables({ data }: Data) {
                   <div>
                     <button
                       onClick={() => {
-                        setEdit(true);
+                        editItem(item);
                       }}
-                      class=" mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                      className=" mr-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     >
                       Edit
                     </button>

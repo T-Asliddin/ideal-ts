@@ -19,9 +19,7 @@ const Index = () => {
 
   const getdata = async () => {
     try {
-      const response = await order.get(params);
-      console.log(response);
-      
+      const response = await order.get(params);      
       if (response.status === 200 && response.data.orders_list) {
         let total = Math.ceil(response.data.total / params.limit);
         setCount(total);
