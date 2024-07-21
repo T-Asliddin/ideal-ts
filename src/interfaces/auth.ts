@@ -6,7 +6,7 @@ export interface SigIn extends ForgotPassword {
 }
 export interface UpdatePassword {
   code: string;
-  new_passwor: string;
+  new_password: string;
   email?: string;
 }
 export interface SignUp extends SigIn {
@@ -14,8 +14,9 @@ export interface SignUp extends SigIn {
   phone_number: string;
 }
 
-export interface AuthVerify extends ForgotPassword {
+export interface AuthVerify  {
   code: string;
+  email?:string
 }
 export interface Request {
   sign_in: (data: SigIn) => any;

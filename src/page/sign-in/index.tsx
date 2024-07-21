@@ -1,20 +1,22 @@
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { Button, IconButton, InputAdornment } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signInValidationSChame } from "@validation";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { auth } from "@service";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Notification from "@notification";
 import { ToastContainer } from "react-toastify";
-import { Formik, Form, Field, ErrorMessage } from "formik";
 import { SigIn } from "@auth-interfaces";
-import { string } from "yup";
+import { EditPassword } from "@modal";
+import { setDataToCookie } from "@data-service";
 
 const Index = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const[open,setOpen]=useState(false)
 
   const initialValues:SigIn = {
     email: "",
@@ -25,10 +27,10 @@ const Index = () => {
     try {
       const response = await auth.sign_in(values);
       if (response.status === 200) {
-        localStorage.setItem("access_token", response?.data?.access_token);
+        setDataToCookie("token",response.data.access_token)
         Notification({ title: "Success", type: "success" });
         setTimeout(() => {
-          navigate("drawer");
+          navigate("/drawer");
         }, 1500);
       }
     } catch (error) {
@@ -39,7 +41,7 @@ const Index = () => {
   return (
     <>
       <ToastContainer />
-     
+     <EditPassword open={open} handleClose={()=>setOpen(false)}/>
       <div className="w-full h-screen flex items-center justify-center">
         <div className="w-[600px]  p-5">
           <h1 className="text-[50px] my-3 text-center ">Tizmiga kirish</h1>
@@ -67,7 +69,7 @@ const Index = () => {
                     />
                   }
                 />
-                <p className="flex justify-end">Parolni unitngizmi ?</p>
+                <p onClick={()=>setOpen(true)} className="flex justify-end cursor-pointer">Parolni unitngizmi ?</p>
                 <Field
                   name="password"
                   type={showPassword ? "text" : "password"}

@@ -14,9 +14,12 @@
       "@routes": ["./src/router/routes.tsx"],
       "@notification": ["./src/utils/notification.ts"],
       "@validation": ["./src/utils/validation.ts"],
-      "@data-service": ["./src/utils/data-service.ts"],
       "@auth-interfaces": ["./src/interfaces/auth.ts"],
-      "@ui": ["./src/components/index.ts"]
+      "@global-interfaces": ["./src/interfaces/global.ts"],
+      "@ui": ["./src/components/index.tsx"],
+      "@modal": ["./src/components/ui/modal"],
+      "@data-service": ["./src/utils/data-service.ts"],
+
 
 
     },
