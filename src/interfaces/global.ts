@@ -4,5 +4,6 @@ export interface Data {
 
 export interface ModalProps {
     open:boolean,
-    handleClose:()=> void
+    handleClose:()=> void,
+    item?:any
 }

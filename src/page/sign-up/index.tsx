@@ -5,7 +5,6 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { signUpValidationSChame } from "@validation";
 import { auth } from "@service";
 import { useMask } from "@react-input/mask";
-// import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Notification from "@notification";
 import { ToastContainer } from "react-toastify";
@@ -16,7 +15,6 @@ import { setDataToCookie } from "@data-service";
 
 const Index = () => {
   const [showPassword, setShowPassword] = useState(false);
-  // const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const initialValues: SignUp = {

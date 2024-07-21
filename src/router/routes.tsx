@@ -10,8 +10,8 @@ interface Route {
 
 const routes: Route[] = [
   { path: "/drawer", content: "Asosiy", icon: <WidgetsIcon /> },
-  { path: "/drawer/order", content: "Orders", icon: <InboxIcon /> },
-  { path: "/drawer/servise", content: "Servise", icon: <DryCleaningIcon /> },
+  { path: "/drawer/order", content: "Orders", icon: <DryCleaningIcon /> },
+  { path: "/drawer/servise", content: "Servise", icon: <InboxIcon/> },
 ];
 
 export default routes;

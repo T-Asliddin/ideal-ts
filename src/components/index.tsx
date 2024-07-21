@@ -1,3 +1,4 @@
 import Drawer from "./ui/drawer"
 import ServiceTable from "./ui/service-table"
-export {Drawer ,ServiceTable}
+import OrderTable from "./ui/order-table"
+export {Drawer ,ServiceTable ,OrderTable}

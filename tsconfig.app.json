@@ -15,13 +15,12 @@
       "@notification": ["./src/utils/notification.ts"],
       "@validation": ["./src/utils/validation.ts"],
       "@auth-interfaces": ["./src/interfaces/auth.ts"],
+      "@service-interfaces": ["./src/interfaces/service.ts"],
+      "@order-interfaces": ["./src/interfaces/order.ts"],
       "@global-interfaces": ["./src/interfaces/global.ts"],
       "@ui": ["./src/components/index.tsx"],
       "@modal": ["./src/components/ui/modal"],
-      "@data-service": ["./src/utils/data-service.ts"],
-
-
-
+      "@data-service": ["./src/utils/data-service.ts"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",
