@@ -4,7 +4,6 @@ import Pagination from "@mui/material/Pagination";
 import { ServiceModal } from "@modal";
 import { ServiceTable } from "@ui";
 import { service } from "@service";
-// import {Parms} from "@service-interfaces"
 
 const Index = () => {
   const [open, setOpen] = useState(false);

@@ -8,6 +8,7 @@ const Index = () => {
   const [count, setCount] = useState(0);
   const [params, setParams] = useState({ page: 1, limit: 6 });
   const handleChange = (event: any, value: number) => {
+    event.delete
     setParams({
       ...params,
       page: value,

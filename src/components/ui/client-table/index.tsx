@@ -7,7 +7,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { client } from "@service";
-import { Delete } from "@client-interfaces";
 import { Data } from "@global-interfaces";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

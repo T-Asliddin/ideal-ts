@@ -1,4 +1,3 @@
-import { AuthVerify } from "./../interfaces/auth";
 import * as Yup from "yup";
 
 // ==================  AUTH   ===================//
