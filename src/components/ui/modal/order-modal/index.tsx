@@ -3,7 +3,13 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import { useState, useEffect } from "react";
-import { Button, MenuItem, Select } from "@mui/material";
+import {
+  Button,
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+} from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { order, service } from "@service";
 import { useMask } from "@react-input/mask";
@@ -138,24 +144,26 @@ export default function BasicModal({ open, handleClose }: ModalProps) {
                   />
                 }
               />
-              <Field
-                name="service_id"
-                as={Select}
-                label="Service"
-                fullWidth
-                variant="outlined"
-                margin="normal"
-                value={values.service_id || ""}
-                onChange={(e: any) =>
-                  setFieldValue("service_id", e.target.value)
-                }
-              >
-                {data.map((service: any) => (
-                  <MenuItem key={service.id} value={service.id}>
-                    {service.name}
-                  </MenuItem>
-                ))}
-              </Field>
+              <FormControl fullWidth variant="outlined" margin="normal">
+                <InputLabel id="service-select-label">Service</InputLabel>
+                <Field
+                  name="service_id"
+                  as={Select}
+                  labelId="service-select-label"
+                  label="Service"
+                  value={values.service_id || ""}
+                  onChange={(e: any) =>
+                    setFieldValue("service_id", e.target.value)
+                  }
+                >
+                  <MenuItem disabled value=""></MenuItem>
+                  {data.map((service: any) => (
+                    <MenuItem key={service.id} value={service.id}>
+                      {service.name}
+                    </MenuItem>
+                  ))}
+                </Field>
+              </FormControl>
               <ErrorMessage
                 name="service_id"
                 component="p"
@@ -167,6 +175,7 @@ export default function BasicModal({ open, handleClose }: ModalProps) {
                 color="primary"
                 disabled={isSubmitting}
                 fullWidth
+                sx={{ mt: 2 }}
               >
                 {isSubmitting ? "Submitting" : "Submit"}
               </Button>

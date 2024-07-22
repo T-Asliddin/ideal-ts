@@ -87,7 +87,15 @@ function ResponsiveDrawer(props:any) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+          {routes.map((item) => {
+            if (item.path == pathname) {
+              return (
+                <Typography variant="h6" noWrap component="div">
+                  {item.content}
+                </Typography>
+              );
+            }
+          })}
           </Typography>
         </Toolbar>
       </AppBar>

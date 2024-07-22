@@ -17,6 +17,7 @@
       "@auth-interfaces": ["./src/interfaces/auth.ts"],
       "@service-interfaces": ["./src/interfaces/service.ts"],
       "@order-interfaces": ["./src/interfaces/order.ts"],
+      "@client-interfaces": ["./src/interfaces/client.ts"],
       "@global-interfaces": ["./src/interfaces/global.ts"],
       "@ui": ["./src/components/index.tsx"],
       "@modal": ["./src/components/ui/modal"],

@@ -58,3 +58,7 @@ export const OrderCreateValidationSChame = Yup.object().shape({
 
 });
 
+export const OrderUpdateValidationSChame = Yup.object().shape({
+  amount: Yup.number().required("Amount is required"),
+});
+
